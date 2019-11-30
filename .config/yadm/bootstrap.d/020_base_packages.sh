@@ -47,6 +47,7 @@ gopass
 graphviz
 gnuplot
 haveged
+i3-lock-fancy
 jsoncpp
 jsonnet
 jq
@@ -71,6 +72,7 @@ pavucontrol
 pcsc-tools
 powerline-fonts-git
 python-pipsi
+py3status
 pwgen
 qemu-headless
 qrencode
