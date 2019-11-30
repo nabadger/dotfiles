@@ -78,8 +78,8 @@ bindsym XF86AudioPlay         exec --no-startup-id mpc -q toggle
 bindsym XF86AudioStop         exec --no-startup-id mpc -q stop
 bindsym XF86AudioNext         exec --no-startup-id mpc -q next
 bindsym XF86AudioPrev         exec --no-startup-id mpc -q prev
-bindsym XF86MonBrightnessUp   exec --no-startup-id xbacklight -inc 5
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
+bindsym XF86MonBrightnessUp   exec --no-startup-id xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 bindsym $mod+t                exec --no-startup-id touchpad_toggle
 
 # Resize mode
