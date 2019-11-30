@@ -102,6 +102,7 @@ xf86-input-libinput
 xf86-video-fbdev
 xf86-video-intel
 xf86-video-vesa
+xorg-xbacklight
 xproto
 xtitle
 xclip
