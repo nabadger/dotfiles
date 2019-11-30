@@ -14,14 +14,20 @@ gaps inner 5
 hide_edge_borders none
 
                         #border backgr. text    indicator
-client.focused          #458588 #458588 #32302f #ebdbb2
-client.unfocused        #83a598 #83a598 #32302f #83a598
+#client.focused          #458588 #458588 #32302f #ebdbb2
+#client.unfocused        #83a598 #83a598 #32302f #83a598
+#client.focused_inactive #83a598 #83a598 #32302f #83a598
+#client.urgent           #fb4934 #fb4934 #32302f #fb4934
+
+client.focused          #458588 #fff #32302f #ebdbb2
+client.unfocused        #83a598 #fff #32302f #83a598
 client.focused_inactive #83a598 #83a598 #32302f #83a598
 client.urgent           #fb4934 #fb4934 #32302f #fb4934
 
+#
 # Keybindings
 #bindsym $mod+Return           exec termite -e "tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
-bindsym $mod+Return           exec termite 
+bindsym $mod+Return           exec urxvt
 bindsym $mod+d                exec rofi -show run
 bindsym $mod+n                exec pcmanfm
 bindsym $mod+l                exec i3lock-fancy -p
