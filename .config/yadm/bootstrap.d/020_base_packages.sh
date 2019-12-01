@@ -84,6 +84,7 @@ rofi
 slack
 ssss
 sudo
+sway
 sysstat
 tomb
 tomb-kdf
