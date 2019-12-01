@@ -13,7 +13,9 @@ hide_edge_borders none
 default_border none
 
 # Outputs
-output "eDP-1" scale 1
+output "HDMI-A-1" scale 1 pos 0 0 res 2048x1152
+output "eDP-1" scale 1 pos 0 1152 res 1920x1080
+
 output "*" bg ~/.config/sway/wallpaper fill
 
 # Inputs
