@@ -1,1 +1,1 @@
-My yadm managed dotfiles. See https://github.com/TheLocehiliosan
+My yadm managed dotfiles (https://yadm.io/)
