@@ -27,6 +27,7 @@ yay -S --needed - <<EOF
 ack
 httpie
 bolt
+brightnessctl
 ebtables
 alsa-lib
 ccid
@@ -45,6 +46,7 @@ git-crypt
 google-cloud-sdk
 gopass
 graphviz
+grim
 gnuplot
 haveged
 i3-lock-fancy
