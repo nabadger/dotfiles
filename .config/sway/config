@@ -23,6 +23,11 @@ input "1:1:AT_Translated_Set_2_keyboard" {
   xkb_layout gb
 }
 
+input "2:7:SynPS/2_Synaptics_TouchPad" {
+    tap enabled
+    natural_scroll enabled
+}
+
 # Keybindings
 # bindsym $mod+Return           exec i3-sensible-terminal
 bindsym $mod+Return           exec termite
