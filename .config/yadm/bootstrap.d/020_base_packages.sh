@@ -82,6 +82,7 @@ ranger
 restic
 rofi
 slack
+slurp
 ssss
 sudo
 sway
