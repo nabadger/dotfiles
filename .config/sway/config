@@ -24,7 +24,8 @@ input "1:1:AT_Translated_Set_2_keyboard" {
 }
 
 # Keybindings
-bindsym $mod+Return           exec i3-sensible-terminal
+# bindsym $mod+Return           exec i3-sensible-terminal
+bindsym $mod+Return           exec termite
 bindsym $mod+d 		      exec "rofi -modi window,drun,ssh run -show drun -sidebar-mode -theme solarized -font 'hack 14'"
 bindsym $mod+n                exec pcmanfm
 bindsym $mod+l                exec swaylog
