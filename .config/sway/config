@@ -12,7 +12,16 @@ font pango:Hack 12
 gaps inner 5 
 hide_edge_borders none
 default_border none
+
+# Outputs
+output "eDP-1" scale 1
 output "*" bg ~/.config/sway/wallpaper fill
+
+# Inputs
+input "1:1:AT_Translated_Set_2_keyboard" {
+  xkb_layout gb
+  xkb_options caps:escape
+}
 
 # Keybindings
 bindsym $mod+Return           exec i3-sensible-terminal
@@ -73,8 +82,8 @@ bindsym XF86AudioPlay         exec --no-startup-id mpc -q toggle
 bindsym XF86AudioStop         exec --no-startup-id mpc -q stop
 bindsym XF86AudioNext         exec --no-startup-id mpc -q next
 bindsym XF86AudioPrev         exec --no-startup-id mpc -q prev
-bindsym XF86MonBrightnessUp   exec --no-startup-id xbacklight -inc 10
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
+bindsym XF86MonBrightnessUp   exec --no-startup-id sudo brightnessctl s 10%+
+bindsym XF86MonBrightnessDown exec --no-startup-id sudo brightnessctl s 10%-
 bindsym $mod+t                exec --no-startup-id touchpad_toggle
 
 # Resize mode
@@ -95,12 +104,6 @@ bar {
 }
 
 # Autostart
-#exec_always --no-startup-id "setxkbmap de"
-#exec_always --no-startup-id "setxkbmap -option caps:escape"
-#exec_always --no-startup-id "xsetroot -cursor_name left_ptr"
-#exec        --no-startup-id "lightsOn"
-#exec        --no-startup-id "unclutter -idle 2"
-#exec        --no-startup-id "redshift"
 exec        --no-startup-id "dunst"
 exec 	    --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec        --no-startup-id nm-applet
