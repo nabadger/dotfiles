@@ -1,5 +1,4 @@
-# Keys
-#set $mod   Mod4
+# keys
 set $mod   Mod1
 set $up    Up
 set $down  Down
@@ -20,7 +19,6 @@ output "*" bg ~/.config/sway/wallpaper fill
 # Inputs
 input "1:1:AT_Translated_Set_2_keyboard" {
   xkb_layout gb
-  xkb_options caps:escape
 }
 
 # Keybindings
@@ -82,9 +80,8 @@ bindsym XF86AudioPlay         exec --no-startup-id mpc -q toggle
 bindsym XF86AudioStop         exec --no-startup-id mpc -q stop
 bindsym XF86AudioNext         exec --no-startup-id mpc -q next
 bindsym XF86AudioPrev         exec --no-startup-id mpc -q prev
-bindsym XF86MonBrightnessUp   exec --no-startup-id sudo brightnessctl s 10%+
-bindsym XF86MonBrightnessDown exec --no-startup-id sudo brightnessctl s 10%-
-bindsym $mod+t                exec --no-startup-id touchpad_toggle
+bindsym XF86MonBrightnessUp   exec --no-startup-id brightnessctl set 10%+
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 
 # Resize mode
 bindsym $mod+r mode "resize"
