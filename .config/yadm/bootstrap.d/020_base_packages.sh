@@ -11,6 +11,7 @@ alsa-lib
 ccid
 chromium
 cmake
+clipit
 curl
 docker
 docker-compose
