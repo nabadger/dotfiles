@@ -96,5 +96,6 @@ zsh-autosuggestions
 zsh-history-substring-search
 zsh-completions
 zsh-syntax-highlighting
+zoom
 EOF
 
