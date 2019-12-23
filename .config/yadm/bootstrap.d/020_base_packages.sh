@@ -11,7 +11,6 @@ ccid
 chromium
 cmake
 curl
-dmenu
 docker
 docker-compose
 docker-machine-driver-kvm2
@@ -26,9 +25,8 @@ graphviz
 grim
 gnuplot
 haveged
-i3lock-fancy-git
+i3lock-fancy
 jsoncpp
-jsonnet
 jq
 kdeconnect
 keychain
