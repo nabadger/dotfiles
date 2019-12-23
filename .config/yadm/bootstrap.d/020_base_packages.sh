@@ -3,6 +3,7 @@
 yay -S --needed --noconfirm - <<EOF
 ack
 httpie
+bat
 bolt
 brightnessctl
 ebtables
