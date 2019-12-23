@@ -12,3 +12,6 @@ curl -Lo k3d https://github.com/rancher/k3d/releases/download/v${K3D_VERSION}/k3
 export GO111MODULE=on
 go get sigs.k8s.io/kustomize/kustomize/v3@v${KUSTOMIZE_VERSION}
 go get github.com/mintel/k8s-yaml-splitter  
+go get github.com/warrensbox/tgswitch
+go get github.com/warrensbox/terraform-switcher
+
