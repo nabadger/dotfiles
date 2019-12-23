@@ -1,29 +1,6 @@
 #!/bin/sh
 
-yay -Syu
-
-#bluez
-#bluez-libs
-#bluez-utils
-gtk3 # conflict with gtk3-classic
-#keepassxc
-#libmpdclient
-#libusb-compat
-#ranger
-#slim          
-#slim-themes 
-#i3ipc-glib-git
-#polybar
-#pulseaudio-bluetooth
-#ruler-git
-#windowchef
-#xcb-util-cursor
-#xcb-util-image
-#xcb-util-keysyms 
-#xcb-util-wm
-#xcb-util-xrm
-#yay -S --needed --noconfirm - <<EOF
-yay -S --needed - <<EOF
+yay -S --needed --noconfirm - <<EOF
 ack
 httpie
 bolt
@@ -49,7 +26,7 @@ graphviz
 grim
 gnuplot
 haveged
-i3-lock-fancy
+i3lock-fancy-git
 jsoncpp
 jsonnet
 jq
@@ -85,21 +62,18 @@ slack
 slurp
 ssss
 sudo
-sway
 sysstat
-tomb
-tomb-kdf
 tcpdump
-termite
 ttf-bitstream-vera
 ttf-dejavu
 ttf-font-icons
 ttf-inconsolata
 ttf-unifont
 unzip
+urxvt-resize-font-git
+urxvt-perls
 vim
 virt-manager
-watson
 wireless_tools
 xcursor-flatbed
 xf86-input-libinput
