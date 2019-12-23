@@ -1,0 +1,5 @@
+autoload -U compinit && compinit
+autoload -U bashcompinit && bashcompinit
+
+source <(gopass completion bash)
+
