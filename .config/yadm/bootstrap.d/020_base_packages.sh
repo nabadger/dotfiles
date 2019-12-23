@@ -18,7 +18,7 @@ dunst
 dstat
 feh
 firefox
-go-jsonnet-git
+jsonnet
 git-crypt
 google-cloud-sdk
 gopass
