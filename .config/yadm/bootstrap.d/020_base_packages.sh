@@ -49,6 +49,7 @@ pavucontrol
 pcsc-tools
 powerline-fonts-git
 python-pipsi
+python-pipx
 py3status
 pwgen
 qemu-headless
