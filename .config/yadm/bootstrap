@@ -1,0 +1,7 @@
+#!/bin/bash
+
+DIR=$HOME/.config/yadm/bootstrap.d/
+
+if [[ -d $DIR ]]; then
+  /usr/bin/run-parts --verbose --regex=".*" "$DIR"
+fi
