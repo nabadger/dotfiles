@@ -9,4 +9,6 @@ curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/v${KU
 curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64 &&  chmod +x skaffold && mv skaffold $HOME/bin
 curl -Lo k3d https://github.com/rancher/k3d/releases/download/v${K3D_VERSION}/k3d-linux-amd64 && chmod +x k3d && mv k3d $HOME/bin
 
-GO111MODULE=on go get sigs.k8s.io/kustomize/kustomize/v3@v${KUSTOMIZE_VERSION}
+export GO111MODULE=on
+go get sigs.k8s.io/kustomize/kustomize/v3@v${KUSTOMIZE_VERSION}
+go get github.com/mintel/k8s-yaml-splitter  
