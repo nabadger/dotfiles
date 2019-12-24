@@ -45,6 +45,7 @@ mtools
 mupdf
 netcat
 nmap
+oh-my-zsh-git
 openssh
 pass
 pasystray
