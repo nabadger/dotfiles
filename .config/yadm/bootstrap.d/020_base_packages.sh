@@ -48,6 +48,7 @@ nmap
 ocsinventory-agent
 oh-my-zsh-git
 openssh
+openvpn-update-systemd-resolved
 pass
 pasystray
 pavucontrol
