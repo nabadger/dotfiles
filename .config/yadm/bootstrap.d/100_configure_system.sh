@@ -20,11 +20,19 @@ FallbackNTP=0.manjaro.pool.ntp.org 1.manjaro.pool.ntp.org 2.manjaro.pool.ntp.org
 #PollIntervalMaxSec=2048
 EOF'
 
+# Setup time
 sudo systemctl enable systemd-timesyncd.service --now
 sudo timedatectl set-ntp true
 
-# GPG
-sudo systemctl enable pcscd.service --now
+# Setup required groups
+sudo usermod -a -G video $(whoami)
+sudo usermod -a -G docker $(whoami)
 
-# Docker
+# Enable Services
+## GPG
+sudo systemctl enable pcscd.service --now
+sudo systemctl start pcscd.service
+
+## Docker
 sudo systemctl enable docker.service --now
+sudo systemctl start docker.service

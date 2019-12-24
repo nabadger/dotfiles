@@ -7,7 +7,7 @@ URxvt.scrollBar: False
 URxvt.fading: 40
 URxvt.saveLines: 1000000
 
-Xft.dpi: 150
+Xft.dpi: 180
 Xft.autohint: 0
 Xft.lcdfilter:  lcddefault
 Xft.hintstyle:  hintfull
@@ -55,7 +55,7 @@ URxvt*color15 : #EEEEEC
 
 ! man urxvtperl
 URxvt.perl-ext-common: default,matcher,url-select,ctrl-clipboard,clipboard,resize-font
-URxvt.urlLauncher: chromium
+URxvt.urlLauncher: firefox
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
 URxvt.matcher.rend.0: fg8 Uline Italic
