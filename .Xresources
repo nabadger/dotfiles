@@ -1,7 +1,7 @@
 ! https://wiki.archlinux.org/index.php/Rxvt-unicode
 ! rxvt-unicode-256color was removed from [community], use rxvt-unicode from [archlinuxfr] instead (seems newer than [extra])
 ! urxvt supports search with M-s
-URxvt*font:                 xft:Inconsolata\ for\ Powerline:pixelsize=27:minspace=False, xft:DejaVu Sans:pixelsize=18
+URxvt*font:                 xft:Inconsolata\ for\ Powerline:size=14:minspace=False, xft:DejaVu Sans:size=14
 
 URxvt.scrollBar: False
 URxvt.fading: 40
