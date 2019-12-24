@@ -43,6 +43,7 @@ manjaro-pulse
 mc
 mtools
 mupdf
+mysql-clients
 netcat
 nmap
 ocsinventory-agent
