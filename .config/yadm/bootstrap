@@ -1,7 +1,12 @@
 #!/bin/bash
 
-DIR=$HOME/.config/yadm/bootstrap.d/
+system_type=$(uname -s)
 
-if [[ -d $DIR ]]; then
-  /usr/bin/run-parts --verbose --regex=".*" "$DIR"
+if [ "$system_type" = "Linux" ]; then
+
+  DIR=$HOME/.config/yadm/bootstrap.d/
+
+  if [[ -d $DIR ]]; then
+    /usr/bin/run-parts --verbose --regex=".*" "$DIR"
+  fi
 fi
