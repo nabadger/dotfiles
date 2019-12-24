@@ -45,6 +45,7 @@ mtools
 mupdf
 netcat
 nmap
+ocsinventory-agent
 oh-my-zsh-git
 openssh
 pass
