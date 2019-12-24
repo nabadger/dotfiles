@@ -77,6 +77,7 @@ ttf-unifont
 unzip
 urxvt-resize-font-git
 urxvt-perls
+vault
 vim
 virt-manager
 wireless_tools
