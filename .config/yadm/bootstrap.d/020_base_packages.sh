@@ -62,6 +62,7 @@ pwgen
 qemu-headless
 qrencode
 ranger
+redis
 restic
 rofi
 slack
