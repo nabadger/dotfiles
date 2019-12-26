@@ -49,7 +49,7 @@ nmap
 ocsinventory-agent
 oh-my-zsh-git
 openssh
-openvpn-update-systemd-resolved
+openresolv
 pass
 pasystray
 pavucontrol

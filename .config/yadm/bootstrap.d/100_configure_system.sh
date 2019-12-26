@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Absolute path this script is in
+SCRIPTPATH=$(dirname "$(readlink -f "$0")")
 # Set makeflags
 sudo sed -i -e 's/^#MAKEFLAGS=.*/MAKEFLAGS="-j2"/' /etc/makepkg.conf
 
@@ -20,6 +22,9 @@ FallbackNTP=0.manjaro.pool.ntp.org 1.manjaro.pool.ntp.org 2.manjaro.pool.ntp.org
 #PollIntervalMaxSec=2048
 EOF'
 
+# Setup openresolv
+sudo cp "${SCRIPTPATH}/system-configs/update-resolv-conf.sh" /etc/openvpn
+
 # Setup time
 sudo systemctl enable systemd-timesyncd.service --now
 sudo timedatectl set-ntp true
@@ -36,3 +41,7 @@ sudo systemctl start pcscd.service
 ## Docker
 sudo systemctl enable docker.service --now
 sudo systemctl start docker.service
+
+## Systemd-resolved
+sudo systemctl enable systemd-resolved.service
+sudo systemctl start systemd-resolved.service
