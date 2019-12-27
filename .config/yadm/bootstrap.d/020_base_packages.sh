@@ -94,6 +94,7 @@ xtitle
 xclip
 xorg-xinit
 yay
+yamllint
 yq
 visual-studio-code-bin
 zathura
