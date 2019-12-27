@@ -19,3 +19,4 @@ go get github.com/warrensbox/terraform-switcher
 go get github.com/prometheus/prometheus/cmd/promtool
 go get github.com/prometheus/alertmanager/cmd/amtool
 go get github.com/brancz/gojsontoyaml
+go get github.com/instrumenta/conftest
