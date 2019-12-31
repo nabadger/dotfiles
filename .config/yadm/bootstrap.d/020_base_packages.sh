@@ -28,6 +28,7 @@ graphviz
 grim
 gnuplot
 haveged
+helm
 i3lock-fancy
 jsoncpp
 jq
