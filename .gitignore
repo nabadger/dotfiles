@@ -21,7 +21,6 @@
 .mozilla
 .otp
 .profile*
-.screenlayout
 .ssh
 .terraform.versions
 .terragrunt.versions
