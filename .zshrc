@@ -26,7 +26,7 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 export PATH="$HOME/go/bin:$HOME/.local/bin:$PATH:$HOME/.terraform.d/plugins"
 export BROWSER="firefox"
 
-alias tfswitch="terraform-switcher -b ${HOME}/bin/terraform"
-alias tgswitch="tgswitch -b ${HOME}/bin/terragrunt"
+alias tfswitch="${HOME}/bin/tfswitch -b ${HOME}/bin/terraform"
+alias tgswitch="${HOME}/bin/tgswitch -b ${HOME}/bin/terragrunt"
 
 eval $(thefuck --alias)
