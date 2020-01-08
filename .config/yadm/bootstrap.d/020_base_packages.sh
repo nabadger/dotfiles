@@ -46,6 +46,7 @@ mupdf
 mysql-clients
 netcat
 nmap
+nvm
 ocsinventory-agent
 oh-my-zsh-git
 openssh
