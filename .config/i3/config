@@ -109,7 +109,7 @@ bar {
 #exec_always --no-startup-id "setxkbmap -option caps:escape"
 #exec_always --no-startup-id "xsetroot -cursor_name left_ptr"
 exec_always --no-startup-id "feh --bg-scale ~/.config/i3/wallpaper"
-exec        --no-startup-id "compton"
+# exec        --no-startup-id "compton"
 exec        --no-startup-id "dunst"
 exec 	    --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec        --no-startup-id nm-applet
