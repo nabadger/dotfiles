@@ -29,6 +29,7 @@ client.urgent           #fb4934 #fb4934 #32302f #fb4934
 #bindsym $mod+Return           exec termite -e "tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
 bindsym $mod+Return           exec i3-sensible-terminal
 bindsym $mod+d 		      exec "rofi -modi window,drun,ssh run -show drun -sidebar-mode -theme solarized -font 'hack 14'"
+bindsym $mod+z                exec --no-startup-id morc_menu
 bindsym $mod+n                exec pcmanfm
 bindsym $mod+l                exec i3lock-fancy -p
 bindsym $mod+Shift+e          exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
@@ -109,7 +110,7 @@ bar {
 #exec_always --no-startup-id "setxkbmap -option caps:escape"
 #exec_always --no-startup-id "xsetroot -cursor_name left_ptr"
 exec_always --no-startup-id "feh --bg-scale ~/.config/i3/wallpaper"
-exec        --no-startup-id "compton"
+# exec        --no-startup-id "compton"
 exec        --no-startup-id "dunst"
 exec 	    --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec        --no-startup-id nm-applet
