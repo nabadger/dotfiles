@@ -25,7 +25,6 @@ export EDITOR='vim'
 export ARCHFLAGS="-arch x86_64"
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 export PATH="$HOME/go/bin:$HOME/.local/bin:$PATH:$HOME/.terraform.d/plugins"
-export BROWSER="firefox.desktop"
 
 alias tfswitch="${HOME}/bin/tfswitch -b ${HOME}/bin/terraform"
 alias tgswitch="${HOME}/bin/tgswitch -b ${HOME}/bin/terragrunt"
