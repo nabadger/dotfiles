@@ -30,4 +30,4 @@ alias tfswitch="${HOME}/bin/tfswitch -b ${HOME}/bin/terraform"
 alias tgswitch="${HOME}/bin/tgswitch -b ${HOME}/bin/terragrunt"
 
 eval $(thefuck --alias)
-source /usr/share/nvm/init-nvm.sh
+# source /usr/share/nvm/init-nvm.sh
