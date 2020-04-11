@@ -15,6 +15,7 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $HOME/.zsh/completion.zsh
+source <(kubectl completion zsh)
 
 KUBE_PS1_SYMBOL_ENABLE=false
 PROMPT=$PROMPT'$(kube_ps1) '
@@ -29,3 +30,4 @@ alias tfswitch="${HOME}/bin/tfswitch -b ${HOME}/bin/terraform"
 alias tgswitch="${HOME}/bin/tgswitch -b ${HOME}/bin/terragrunt"
 
 eval $(thefuck --alias)
+source /usr/share/nvm/init-nvm.sh
