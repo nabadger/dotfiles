@@ -4,6 +4,7 @@ yay -S --needed --noconfirm - <<EOF
 ack
 httpie
 bat
+blueberry
 bolt
 brightnessctl
 ebtables
