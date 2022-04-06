@@ -1,0 +1,117 @@
+# Keys
+#set $mod   Mod4
+set $mod   Mod1
+set $up    Up
+set $down  Down
+set $left  Left
+set $right Right
+floating_modifier $mod
+
+# Theme
+font pango:Hack 12
+new_window pixel 2
+gaps inner 5 
+hide_edge_borders none
+
+                        #border backgr. text    indicator
+client.focused          #00FF00 #285577 #ffffff #2e9ef4   #00FF00
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #83a598 #fff #32302f #83a598
+client.focused_inactive #83a598 #83a598 #32302f #83a598
+client.urgent           #fb4934 #fb4934 #32302f #fb4934
+client.background       #ffffff
+
+#
+# Keybindings
+#bindsym $mod+Return           exec termite -e "tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
+bindsym $mod+Return           exec i3-sensible-terminal
+bindsym $mod+d 		      exec "rofi -modi window,drun,ssh run -show drun -sidebar-mode -theme solarized -font 'hack 14'"
+bindsym $mod+z                exec --no-startup-id morc_menu
+bindsym $mod+n                exec pcmanfm
+bindsym $mod+l                exec i3lock-fancy -p
+bindsym $mod+Shift+e          exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+bindsym $mod+q                kill
+bindsym $mod+Shift+c          reload
+bindsym $mod+Shift+r          restart
+bindsym $mod+$left            focus left
+bindsym $mod+$down            focus down
+bindsym $mod+$up              focus up
+bindsym $mod+$right           focus right
+bindsym $mod+Shift+$left      move left
+bindsym $mod+Shift+$down      move down
+bindsym $mod+Shift+$up        move up
+bindsym $mod+Shift+$right     move right
+bindsym $mod+h                split h
+bindsym $mod+v                split v
+bindsym $mod+f                fullscreen toggle
+bindsym $mod+e                layout toggle split
+bindsym $mod+Shift+space      floating toggle
+bindsym $mod+space            focus mode_toggle
+bindsym $mod+a                focus parent
+bindsym $mod+Shift+a          focus child
+bindsym $mod+1                workspace 1
+bindsym $mod+2                workspace 2
+bindsym $mod+3                workspace 3
+bindsym $mod+4                workspace 4
+bindsym $mod+5                workspace 5
+bindsym $mod+6                workspace 6
+bindsym $mod+7                workspace 7
+bindsym $mod+8                workspace 8
+bindsym $mod+9                workspace 9
+bindsym $mod+0                workspace 10
+bindsym $mod+Shift+1          move container to workspace 1
+bindsym $mod+Shift+2          move container to workspace 2
+bindsym $mod+Shift+3          move container to workspace 3
+bindsym $mod+Shift+4          move container to workspace 4
+bindsym $mod+Shift+5          move container to workspace 5
+bindsym $mod+Shift+6          move container to workspace 6
+bindsym $mod+Shift+7          move container to workspace 7
+bindsym $mod+Shift+8          move container to workspace 8
+bindsym $mod+Shift+9          move container to workspace 9
+bindsym $mod+Shift+0          move container to workspace 10
+
+set $refresh_i3status killall -SIGUSR1 i3status
+
+bindsym XF86AudioRaiseVolume  exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume  exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute 	      exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute      exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86AudioPlay         exec --no-startup-id mpc -q toggle
+bindsym XF86AudioStop         exec --no-startup-id mpc -q stop
+bindsym XF86AudioNext         exec --no-startup-id mpc -q next
+bindsym XF86AudioPrev         exec --no-startup-id mpc -q prev
+bindsym XF86MonBrightnessUp   exec --no-startup-id xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
+bindsym $mod+t                exec --no-startup-id touchpad_toggle
+
+# Resize mode
+bindsym $mod+r mode "resize"
+mode "resize" {
+    bindsym $left  resize shrink width 20 px or 2 ppt
+    bindsym $down  resize grow height 20 px or 2 ppt
+    bindsym $up    resize shrink height 20 px or 2 ppt
+    bindsym $right resize grow width 20 px or 2 ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# Bar
+bar {
+        status_command i3status
+        tray_output primary
+}
+
+# Autostart
+#exec_always --no-startup-id "setxkbmap de"
+#exec_always --no-startup-id "setxkbmap -option caps:escape"
+#exec_always --no-startup-id "xsetroot -cursor_name left_ptr"
+exec_always --no-startup-id "feh --bg-scale ~/.config/i3/wallpaper"
+# exec        --no-startup-id "compton"
+exec        --no-startup-id "dunst"
+exec 	    --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec        --no-startup-id nm-applet
+exec        --no-startup-id clipit 
+exec        --no-startup-id pasystray
+exec        --no-startup-id xdg-settings set default-web-browser firefox.desktop
