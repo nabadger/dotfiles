@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/home/nb/todo'
+let g:netrw_dirhist_5='/home/nb/work/gitlab/mintel/satoshi/infrastructure/aws-infrastructure-live/dev/us-east-2/nb1/services/eks-cluster/core-services'
+let g:netrw_dirhist_4='/home/nb/work/gitlab/mintel/satoshi/jsonnet/checkouts/sre/core-cluster-jsonnet/lib/promtail'
+let g:netrw_dirhist_3='/home/nb/work/github/mintel/build-harness-extensions/modules'
+let g:netrw_dirhist_2='/home/nb/work/github/mintel/build-harness-extensions/modules/k8s'
+let g:netrw_dirhist_1='/home/nb/work/gitlab/mintel/satoshi/jsonnet/checkouts/apps/shared-services-jsonnet/lib/mixpanel-data-synchroniser'
+let g:netrw_dirhist_0='/home/nb/work/gitlab/mintel/satoshi/jsonnet/checkouts/apps/portal-jsonnet/environments/portal-web/local/localstack'
+let g:netrw_dirhist_9='/home/nb/work/gitlab/mintel/satoshi/jsonnet/checkouts/sre/core-cluster-jsonnet/lib/ingress-default-backend'
+let g:netrw_dirhist_8='/home/nb/work/gitlab/mintel/satoshi/jsonnet/checkouts/sre/core-cluster-jsonnet/lib/crossplane-packages/aws/storage/s3bucket/v1alpha1'
+let g:netrw_dirhist_7='/home/nb/work/gitlab/mintel/satoshi/kubernetes/argocd-bootstrap/environments/aws.qa/config'

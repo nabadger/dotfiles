@@ -1,0 +1,101 @@
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch master
+#
+# Initial commit
+#
+# Changes to be committed:
+#	new file:   .config/dconf/user
+#	new file:   .config/dunst/dunstrc
+#	new file:   .config/google-chrome/Default/Network Persistent State
+#	new file:   .config/google-chrome/Default/Preferences
+#	new file:   .config/google-chrome/Default/Session Storage/000003.log
+#	new file:   .config/google-chrome/Default/Session Storage/CURRENT
+#	new file:   .config/google-chrome/Default/Session Storage/LOCK
+#	new file:   .config/google-chrome/Default/Session Storage/LOG
+#	new file:   .config/google-chrome/Default/Session Storage/MANIFEST-000001
+#	new file:   .config/google-chrome/Default/TransportSecurity
+#	new file:   .config/google-chrome/Local State
+#	new file:   .config/htop/htoprc
+#	new file:   .config/i3/config
+#	new file:   .config/i3/wallpaper
+#	new file:   .config/i3status/config
+#	new file:   .config/menus/applications-merged/user-chrome-apps.menu
+#	new file:   .config/menus/applications-merged/xdg-desktop-menu-dummy.menu
+#	new file:   .config/menus/gnome-applications-merged
+#	new file:   .config/thefuck/__pycache__/settings.cpython-38.pyc
+#	new file:   .config/thefuck/settings.py
+#	new file:   .config/yadm/repo.git/HEAD
+#	new file:   .config/yadm/repo.git/config
+#	new file:   .config/yadm/repo.git/description
+#	new file:   .config/yadm/repo.git/hooks/applypatch-msg.sample
+#	new file:   .config/yadm/repo.git/hooks/commit-msg.sample
+#	new file:   .config/yadm/repo.git/hooks/fsmonitor-watchman.sample
+#	new file:   .config/yadm/repo.git/hooks/post-update.sample
+#	new file:   .config/yadm/repo.git/hooks/pre-applypatch.sample
+#	new file:   .config/yadm/repo.git/hooks/pre-commit.sample
+#	new file:   .config/yadm/repo.git/hooks/pre-merge-commit.sample
+#	new file:   .config/yadm/repo.git/hooks/pre-push.sample
+#	new file:   .config/yadm/repo.git/hooks/pre-rebase.sample
+#	new file:   .config/yadm/repo.git/hooks/pre-receive.sample
+#	new file:   .config/yadm/repo.git/hooks/prepare-commit-msg.sample
+#	new file:   .config/yadm/repo.git/hooks/update.sample
+#	new file:   .config/yadm/repo.git/index.lock
+#	new file:   .config/yadm/repo.git/info/exclude
+#	new file:   .vim/.netrwhist
+#	new file:   .vim/autoload/pathogen.vim
+#	new file:   .vim/autoload/plug.vim
+#	new file:   .vim/bundle/fzf.vim/.github/ISSUE_TEMPLATE.md
+#	new file:   .vim/bundle/fzf.vim/.gitignore
+#	new file:   .vim/bundle/fzf.vim/README.md
+#	new file:   .vim/bundle/fzf.vim/autoload/fzf/vim.vim
+#	new file:   .vim/bundle/fzf.vim/autoload/fzf/vim/complete.vim
+#	new file:   .vim/bundle/fzf.vim/doc/fzf-vim.txt
+#	new file:   .vim/bundle/fzf.vim/plugin/fzf.vim
+#	new file:   .vim/bundle/vim-jsonnet/.gitignore
+#	new file:   .vim/bundle/vim-jsonnet/CONTRIBUTING
+#	new file:   .vim/bundle/vim-jsonnet/LICENSE
+#	new file:   .vim/bundle/vim-jsonnet/README.md
+#	new file:   .vim/bundle/vim-jsonnet/autoload/jsonnet.vim
+#	new file:   .vim/bundle/vim-jsonnet/doc/vim-jsonnet.txt
+#	new file:   .vim/bundle/vim-jsonnet/ftdetect/jsonnet.vim
+#	new file:   .vim/bundle/vim-jsonnet/ftplugin/jsonnet.vim
+#	new file:   .vim/bundle/vim-jsonnet/jsonnet-screenshot.png
+#	new file:   .vim/bundle/vim-jsonnet/plugin/jsonnet.vim
+#	new file:   .vim/bundle/vim-jsonnet/syntax/jsonnet.vim
+#	new file:   .vim/bundle/vim-jsonnet/syntax_checkers/jsonnet/jsonnet.vim
+#	new file:   .vim/bundle/vim-sensible/README.markdown
+#	new file:   .vim/bundle/vim-sensible/plugin/sensible.vim
+#	new file:   .vim/bundle/vim-terraform/.editorconfig
+#	new file:   .vim/bundle/vim-terraform/.gitignore
+#	new file:   .vim/bundle/vim-terraform/.travis.yml
+#	new file:   .vim/bundle/vim-terraform/CHANGELOG.md
+#	new file:   .vim/bundle/vim-terraform/CODE_OF_CONDUCT.md
+#	new file:   .vim/bundle/vim-terraform/CONTRIBUTING.md
+#	new file:   .vim/bundle/vim-terraform/LICENSE
+#	new file:   .vim/bundle/vim-terraform/Makefile
+#	new file:   .vim/bundle/vim-terraform/README.md
+#	new file:   .vim/bundle/vim-terraform/autoload/terraform.vim
+#	new file:   .vim/bundle/vim-terraform/doc/terraform.txt
+#	new file:   .vim/bundle/vim-terraform/ftdetect/terraform.vim
+#	new file:   .vim/bundle/vim-terraform/ftplugin/terraform.vim
+#	new file:   .vim/bundle/vim-terraform/indent/terraform.vim
+#	new file:   .vim/bundle/vim-terraform/syntax/terraform.vim
+#	new file:   .vim/bundle/vim-terraform/test/syntax.vader
+#	new file:   .vim/bundle/vim-terraform/test/terraform_align.vader
+#	new file:   .vim/bundle/vim-terraform/test/terraform_fold_sections.vader
+#	new file:   .vim/bundle/vim-terraform/update_automagic.sh
+#	new file:   .vim/bundle/vim-terraform/update_commands.rb
+#	new file:   .vim/bundle/vim-yaml/plugin/yaml.vim
+#	new file:   .zsh/completion.zsh
+#	new file:   .zsh/gopass-zsh.completion
+#	new file:   .zsh/kubectl-zsh.completion
+#	new file:   .zsh/prompt.zsh
+#
+# Changes not staged for commit:
+#	modified:   .config/google-chrome/Default/Network Persistent State
+#	modified:   .config/google-chrome/Default/Preferences
+#
+# Untracked files not listed
