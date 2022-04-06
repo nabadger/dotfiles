@@ -1,0 +1,4 @@
+sudo apt update -y
+sudo apt install -y $(cat packages.txt | tr "\n" " ")
+sudo apt autoremove
+
