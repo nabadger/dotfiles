@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# Toggle touchpad events under Sway
+set -euo pipefail
+
+if ! command -v swaymsg >/dev/null; then
+  echo "swaymsg not found (are you in a Sway session?)" >&2
+  exit 1
+fi
+
+# Find first touchpad identifier
+id="$(swaymsg -t get_inputs | python3 -c '
+import json,sys
+inputs=json.load(sys.stdin)
+for i in inputs:
+    if i.get("type")=="touchpad":
+        print(i["identifier"]); break
+')"
+
+if [[ -z "${id}" ]]; then
+  echo "No touchpad found" >&2
+  exit 1
+fi
+
+enabled="$(swaymsg -t get_inputs | python3 -c '
+import json,sys
+ident="'"${id}"'"
+for i in json.load(sys.stdin):
+    if i.get("identifier")==ident:
+        print(i.get("libinput",{}).get("send_events","enabled")); break
+')"
+
+if [[ "${enabled}" == "disabled" ]]; then
+  swaymsg "input \"${id}\" events enabled"
+  echo "Touchpad enabled"
+else
+  swaymsg "input \"${id}\" events disabled"
+  echo "Touchpad disabled"
+fi

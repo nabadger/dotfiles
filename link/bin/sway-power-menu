@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Simple power menu for Waybar / Sway
+set -euo pipefail
+
+choice="$(printf '%s\n' \
+  'Lock' \
+  'Logout' \
+  'Suspend' \
+  'Reboot' \
+  'Shutdown' \
+  | fuzzel --dmenu --prompt 'Power: ')"
+
+case "${choice}" in
+  Lock)     exec swaylock -f -c 000000 ;;
+  Logout)   exec swaymsg exit ;;
+  Suspend)  exec systemctl suspend ;;
+  Reboot)   exec systemctl reboot ;;
+  Shutdown) exec systemctl poweroff ;;
+  *)        exit 0 ;;
+esac

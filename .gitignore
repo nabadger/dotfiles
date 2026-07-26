@@ -14,7 +14,6 @@
 .gtkrc-2.0
 .icons
 .keychain
-.local
 .makepkg.conf
 .moc
 .moonchild
@@ -32,14 +31,28 @@
 .xsession-errors
 .xsession-errors.old
 .zcompdump
-.zcompdump-nb-pc-5.7.1
+.zcompdump-*
 .zsh_history
 
-# Directories
-bin
-go
-src
-work
-Documents
-Desktop
-Downloads
+# Home clutter — do not track at repo root
+/.local
+/bin
+/go
+/src
+/work
+/Documents
+/Desktop
+/Downloads
+
+# Allow portable trees under link/
+!link/bin/
+!link/bin/**
+!link/.local/
+!link/.local/**
+
+# GNOME machine state
+.config/dconf/
+
+# Editor / shell noise if it ever lands under link/
+**/.netrwhist
+**/.DS_Store

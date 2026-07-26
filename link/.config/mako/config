@@ -1,0 +1,31 @@
+# Mako — Wayland notifications
+
+font=Hack 11
+background-color=#1c1c1cee
+text-color=#f2f2f2
+border-color=#E95420
+border-size=2
+border-radius=8
+padding=12
+margin=8
+width=360
+height=120
+default-timeout=5000
+ignore-timeout=0
+anchor=top-right
+max-visible=5
+icons=1
+max-icon-size=48
+icon-path=/usr/share/icons/Yaru:/usr/share/icons/hicolor
+
+[urgency=low]
+border-color=#555555
+default-timeout=3000
+
+[urgency=normal]
+border-color=#E95420
+
+[urgency=critical]
+border-color=#c01c28
+background-color=#2a1010ee
+default-timeout=0

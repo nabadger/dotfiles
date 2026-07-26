@@ -1,0 +1,161 @@
+* {
+    font-family: "Hack", "FontAwesome", "Font Awesome 6 Free", sans-serif;
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: rgba(28, 28, 28, 0.92);
+    color: #f2f2f2;
+    border-bottom: 2px solid #E95420;
+    transition-property: background-color;
+    transition-duration: 200ms;
+}
+
+window#waybar.hidden {
+    opacity: 0.25;
+}
+
+button {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+    color: inherit;
+    min-height: 0;
+    padding: 0 8px;
+}
+
+button:hover {
+    background: rgba(233, 84, 32, 0.18);
+}
+
+#custom-launcher,
+#workspaces,
+#mode,
+#window,
+#backlight,
+#pulseaudio,
+#network,
+#bluetooth,
+#battery,
+#tray,
+#clock,
+#custom-settings,
+#custom-power {
+    padding: 0 10px;
+    margin: 0;
+    color: #f2f2f2;
+}
+
+#custom-launcher {
+    color: #E95420;
+    font-size: 15px;
+    padding: 0 12px;
+}
+
+#workspaces {
+    padding: 0 4px;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    margin: 2px 2px;
+    border-radius: 6px;
+    color: #8a8a8a;
+    background: transparent;
+    font-size: 12px;
+}
+
+/* Empty / persistent unused desktops */
+#workspaces button.persistent:not(.focused):not(.visible) {
+    color: #555555;
+    opacity: 0.55;
+}
+
+/* Workspace with windows, not focused */
+#workspaces button.visible:not(.focused),
+#workspaces button:not(.persistent):not(.focused) {
+    color: #cfcfcf;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Active desktop */
+#workspaces button.focused {
+    color: #ffffff;
+    background: rgba(233, 84, 32, 0.28);
+    border-bottom: 2px solid #E95420;
+}
+
+#workspaces button.urgent {
+    color: #ffffff;
+    background: rgba(192, 28, 40, 0.55);
+}
+
+#mode {
+    color: #E95420;
+    font-weight: bold;
+}
+
+#window {
+    color: #dddddd;
+}
+
+#pulseaudio:hover,
+#network:hover,
+#bluetooth:hover,
+#battery:hover,
+#backlight:hover,
+#clock:hover,
+#custom-settings:hover,
+#custom-power:hover {
+    background: rgba(233, 84, 32, 0.15);
+}
+
+#pulseaudio.muted {
+    color: #c01c28;
+}
+
+#network.disconnected {
+    color: #c01c28;
+}
+
+#bluetooth.disabled,
+#bluetooth.off {
+    color: #777777;
+}
+
+#battery.charging,
+#battery.plugged {
+    color: #26a269;
+}
+
+#battery.warning:not(.charging) {
+    color: #e5a50a;
+}
+
+#battery.critical:not(.charging) {
+    color: #c01c28;
+    animation: blink 1s linear infinite alternate;
+}
+
+@keyframes blink {
+    to {
+        color: #ffffff;
+        background-color: #c01c28;
+    }
+}
+
+#tray {
+    padding: 0 8px;
+}
+
+#custom-settings,
+#custom-power {
+    font-size: 14px;
+}
+
+#custom-power {
+    padding-right: 14px;
+    color: #E95420;
+}

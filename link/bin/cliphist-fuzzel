@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Clipboard history picker via cliphist + fuzzel
+set -euo pipefail
+cliphist list | fuzzel --dmenu --prompt 'Clipboard: ' | cliphist decode | wl-copy

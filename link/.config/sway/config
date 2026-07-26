@@ -1,0 +1,176 @@
+# Sway config — modern Wayland stack (fuzzel, waybar, mako, foot)
+
+### Variables
+set $mod   Mod1
+set $up    Up
+set $down  Down
+set $left  Left
+set $right Right
+set $term  foot
+set $menu  fuzzel
+
+floating_modifier $mod
+
+### Theme
+font pango:Hack 12
+default_border pixel 2
+hide_edge_borders none
+
+# border  background  text     indicator  child_border
+client.focused          #E95420 #2C001E #ffffff #E95420 #E95420
+client.focused_inactive #333333 #1a1a1a #cccccc #333333 #333333
+client.unfocused        #222222 #111111 #888888 #222222 #222222
+client.urgent           #c01c28 #c01c28 #ffffff #c01c28 #c01c28
+
+### Gaps
+gaps inner 8
+gaps outer 0
+smart_gaps on
+smart_borders on
+
+### Keybindings
+bindsym $mod+Return           exec $term
+bindsym $mod+d                exec $menu
+bindsym $mod+Shift+d          exec fuzzel --dmenu --prompt 'Run: ' | xargs -r swaymsg exec --
+bindsym $mod+c                exec google-chrome
+bindsym $mod+z                exec zoom-client
+bindsym $mod+n                exec nautilus
+bindsym $mod+g                exec ~/bin/gnome-settings
+bindsym $mod+l                exec swaylock -f -c 000000
+bindsym $mod+Shift+v          exec cliphist-fuzzel
+bindsym $mod+Shift+e          exec swaynag -t warning -m 'Exit sway?' -B 'Yes, exit sway' 'swaymsg exit'
+
+bindsym $mod+q                kill
+bindsym $mod+Shift+c          reload
+bindsym $mod+Shift+r          exec swaymsg reload
+
+bindsym $mod+$left            focus left
+bindsym $mod+$down            focus down
+bindsym $mod+$up              focus up
+bindsym $mod+$right           focus right
+bindsym $mod+Shift+$left      move left
+bindsym $mod+Shift+$down      move down
+bindsym $mod+Shift+$up        move up
+bindsym $mod+Shift+$right     move right
+
+bindsym $mod+h                splith
+bindsym $mod+v                splitv
+bindsym $mod+f                fullscreen toggle
+bindsym $mod+e                layout toggle split
+bindsym $mod+Shift+space      floating toggle
+bindsym $mod+space            focus mode_toggle
+bindsym $mod+a                focus parent
+bindsym $mod+Shift+a          focus child
+
+bindsym $mod+1                workspace number 1
+bindsym $mod+2                workspace number 2
+bindsym $mod+3                workspace number 3
+bindsym $mod+4                workspace number 4
+bindsym $mod+Shift+1          move container to workspace number 1
+bindsym $mod+Shift+2          move container to workspace number 2
+bindsym $mod+Shift+3          move container to workspace number 3
+bindsym $mod+Shift+4          move container to workspace number 4
+
+bindsym XF86AudioRaiseVolume  exec wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+
+bindsym XF86AudioLowerVolume  exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym XF86AudioMute         exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym XF86AudioMicMute      exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+bindsym XF86AudioPlay         exec playerctl play-pause
+bindsym XF86AudioStop         exec playerctl stop
+bindsym XF86AudioNext         exec playerctl next
+bindsym XF86AudioPrev         exec playerctl previous
+
+bindsym XF86MonBrightnessUp   exec brightnessctl set 5%+
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym $mod+t                exec touchpad_toggle
+
+bindsym Print                 exec grim -g "$(slurp)" - | wl-copy
+bindsym $mod+Print             exec grim - | wl-copy
+
+### Resize mode
+bindsym $mod+r mode "resize"
+mode "resize" {
+    bindsym $left  resize shrink width 20 px
+    bindsym $down  resize grow height 20 px
+    bindsym $up    resize shrink height 20 px
+    bindsym $right resize grow width 20 px
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+### Gaps mode
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+    bindsym o      mode "$mode_gaps_outer"
+    bindsym i      mode "$mode_gaps_inner"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+mode "$mode_gaps_inner" {
+    bindsym plus  gaps inner current plus 5
+    bindsym minus gaps inner current minus 5
+    bindsym 0     gaps inner current set 0
+
+    bindsym Shift+plus  gaps inner all plus 5
+    bindsym Shift+minus gaps inner all minus 5
+    bindsym Shift+0     gaps inner all set 0
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+    bindsym plus  gaps outer current plus 5
+    bindsym minus gaps outer current minus 5
+    bindsym 0     gaps outer current set 0
+
+    bindsym Shift+plus  gaps outer all plus 5
+    bindsym Shift+minus gaps outer all minus 5
+    bindsym Shift+0     gaps outer all set 0
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+### Input
+input type:keyboard {
+    xkb_layout gb
+    xkb_model pc105
+    xkb_variant ""
+    xkb_options ""
+}
+
+input type:touchpad {
+    tap enabled
+    natural_scroll enabled
+}
+
+### Wallpaper (swaybg via sway — replaces feh)
+output * bg ~/.config/sway/wallpaper fill
+
+### Waybar — let Sway own the process (no pkill wrapper; that was killing the bar)
+bar {
+    swaybar_command /usr/bin/waybar
+}
+
+### Autostart
+exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+exec mako
+exec blueman-applet
+exec wl-paste --type text --watch cliphist store
+exec wl-paste --type image --watch cliphist store
+# Auto-choose split direction (wider → side-by-side, taller → stacked); golden-ratio bias
+exec_always --no-startup-id sh -c 'pkill -x autotiling 2>/dev/null; exec autotiling -sr 1.61'
+# If Waybar ever disappears: Mod+Shift+b
+bindsym $mod+Shift+b exec ~/bin/waybar-launch
+exec swayidle -w \
+    timeout 300 'swaylock -f -c 000000' \
+    timeout 600 'swaymsg "output * power off"' \
+    resume 'swaymsg "output * power on"' \
+    before-sleep 'swaylock -f -c 000000'
+exec xdg-settings set default-web-browser firefox.desktop

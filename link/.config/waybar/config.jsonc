@@ -1,0 +1,197 @@
+// -*- mode: jsonc -*-
+{
+    "layer": "top",
+    "position": "top",
+    "height": 34,
+    "spacing": 0,
+
+    "modules-left": [
+        "custom/launcher",
+        "sway/workspaces",
+        "sway/mode"
+    ],
+    "modules-center": [
+        "sway/window"
+    ],
+    "modules-right": [
+        "backlight",
+        "pulseaudio",
+        "network",
+        "bluetooth",
+        "battery",
+        "tray",
+        "clock",
+        "custom/settings",
+        "custom/power"
+    ],
+
+    "custom/launcher": {
+        "format": "",
+        "tooltip-format": "Applications (fuzzel)",
+        "on-click": "fuzzel"
+    },
+
+    "sway/workspaces": {
+        "disable-scroll": false,
+        "all-outputs": true,
+        "warp-on-scroll": false,
+        "format": "{name}{windows}",
+        "format-window-separator": "",
+        "window-rewrite-default": " {short}",
+        "window-rewrite": {
+            "class<firefox>": " Firefox",
+            "class<Firefox>": " Firefox",
+            "class<google-chrome>": " Chrome",
+            "class<Google-chrome>": " Chrome",
+            "class<chromium>": " Chromium",
+            "class<Chromium>": " Chromium",
+            "class<foot>": " Terminal",
+            "class<org.gnome.Nautilus>": " Files",
+            "class<org.gnome.Settings>": " Settings",
+            "class<gnome-control-center>": " Settings",
+            "class<code>": " Code",
+            "class<Code>": " Code",
+            "class<cursor>": " Cursor",
+            "class<Cursor>": " Cursor",
+            "class<Slack>": " Slack",
+            "class<spotify>": " Spotify",
+            "class<Spotify>": " Spotify",
+            "class<zoom>": " Zoom",
+            "class<zoom-client>": " Zoom",
+            "class<pavucontrol>": " Volume",
+            "class<blueman-manager>": " Bluetooth",
+            "class<nm-connection-editor>": " Network",
+            "class<org.gnome.Evolution>": " Mail",
+            "class<thunderbird>": " Mail",
+            "class<org.telegram.desktop>": " Telegram",
+            "class<steam>": " Steam",
+            "class<mpv>": " Video",
+            "class<org.gnome.Calculator>": " Calc",
+            "class<org.gnome.TextEditor>": " Text",
+            "class<libreoffice-writer>": " Writer",
+            "class<libreoffice-calc>": " Calc",
+            "class<teams-for-linux>": " Teams",
+            "class<Microsoft Teams>": " Teams",
+            "class<Teams>": " Teams",
+            "class<1Password>": " 1Password",
+            "class<Postman>": " Postman",
+            "class<Insomnia>": " Insomnia"
+        },
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": []
+        }
+    },
+
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+
+    "sway/window": {
+        "max-length": 60,
+        "tooltip": true
+    },
+
+    "backlight": {
+        "format": " {percent}%",
+        "on-scroll-up": "brightnessctl set 2%+",
+        "on-scroll-down": "brightnessctl set 2%-",
+        "tooltip": false
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": " muted",
+        "format-bluetooth": "{icon} {volume}%",
+        "format-bluetooth-muted": "",
+        "format-source": "",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "headset": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol",
+        "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-scroll-up": "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 2%+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-",
+        "tooltip-format": "{desc}\nVolume: {volume}%"
+    },
+
+    "network": {
+        "format-wifi": "  {essid}",
+        "format-ethernet": " {ipaddr}",
+        "format-linked": " {ifname}",
+        "format-disconnected": "⚠ Offline",
+        "tooltip-format-wifi": "{essid}\n{signalStrength}% · {frequency} MHz\n{ipaddr}",
+        "tooltip-format-ethernet": "{ifname}\n{ipaddr}/{cidr}",
+        "tooltip-format-disconnected": "No network connection",
+        "on-click": "sh -c 'exec $HOME/bin/gnome-settings wifi'",
+        "on-click-right": "nm-connection-editor"
+    },
+
+    "bluetooth": {
+        "format": "",
+        "format-disabled": " off",
+        "format-off": " off",
+        "format-on": "",
+        "format-connected": " {device_alias}",
+        "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+        "tooltip-format": "{controller_alias}\n{status}",
+        "tooltip-format-connected": "{controller_alias}\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias} · {device_battery_percentage}%",
+        "on-click": "blueman-manager",
+        "on-click-right": "sh -c 'exec $HOME/bin/gnome-settings bluetooth'"
+    },
+
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-full": "{icon} {capacity}%",
+        "format-alt": "{icon} {time}",
+        "format-icons": ["", "", "", "", ""],
+        "tooltip-format": "{timeTo}\nPower draw: {power} W"
+    },
+
+    "tray": {
+        "icon-size": 16,
+        "spacing": 8
+    },
+
+    "clock": {
+        "format": "{:%a %d %b  %H:%M}",
+        "tooltip-format": "<tt>{calendar}</tt>",
+        "calendar": {
+            "mode": "month",
+            "weeks-pos": "right",
+            "format": {
+                "months": "<span color='#E95420'><b>{}</b></span>",
+                "days": "<span color='#e6e6e6'>{}</span>",
+                "weeks": "<span color='#888888'>W{}</span>",
+                "weekdays": "<span color='#E95420'><b>{}</b></span>",
+                "today": "<span color='#ffffff'><b><u>{}</u></b></span>"
+            }
+        },
+        "on-click": "sh -c 'exec $HOME/bin/gnome-settings datetime'"
+    },
+
+    "custom/settings": {
+        "format": "",
+        "tooltip-format": "Settings",
+        "on-click": "sh -c 'exec $HOME/bin/gnome-settings'"
+    },
+
+    "custom/power": {
+        "format": "",
+        "tooltip-format": "Power menu",
+        "on-click": "sway-power-menu"
+    }
+}

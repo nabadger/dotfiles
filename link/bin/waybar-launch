@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Manually restart Waybar if it disappears.
+# Prefer letting Sway manage the bar via: swaymsg reload
+set -euo pipefail
+
+pkill -x waybar 2>/dev/null || true
+sleep 0.2
+
+# Ask sway to respawn its configured bar (bar-0)
+if command -v swaymsg >/dev/null && [[ -n "${SWAYSOCK:-}" ]]; then
+  swaymsg reload >/dev/null
+  sleep 0.3
+fi
+
+# Fallback if sway didn't bring it back
+if ! pgrep -x waybar >/dev/null; then
+  exec /usr/bin/waybar -b bar-0
+fi

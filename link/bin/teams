@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Launch Teams for Linux (Electron). Use X11/XWayland — native Wayland GPU is unstable here.
+set -euo pipefail
+
+BIN=""
+for candidate in teams-for-linux /usr/bin/teams-for-linux /snap/bin/teams-for-linux /opt/teams-for-linux/teams-for-linux; do
+  if command -v "$candidate" >/dev/null 2>&1 || [[ -x "$candidate" ]]; then
+    BIN="$candidate"
+    break
+  fi
+done
+
+if [[ -z "$BIN" ]]; then
+  echo "teams-for-linux is not installed. Run: sudo ~/bin/install-teams.sh" >&2
+  exit 1
+fi
+
+# Ensure XWayland is available under Sway
+export ELECTRON_OZONE_PLATFORM_HINT=x11
+
+exec "$BIN" --ozone-platform=x11 --disable-gpu "$@"

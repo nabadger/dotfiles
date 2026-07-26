@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Microsoft Teams
+GenericName=Teams
+Comment=Unofficial Microsoft Teams client (Electron)
+Exec=sh -c 'exec "$HOME/bin/teams" "$@"' sh %U
+Terminal=false
+Type=Application
+Icon=teams-for-linux
+Categories=Network;InstantMessaging;Chat;
+StartupWMClass=teams-for-linux
+MimeType=x-scheme-handler/msteams;
+Keywords=teams;microsoft;chat;meetings;
+X-GNOME-UsesNotifications=true
