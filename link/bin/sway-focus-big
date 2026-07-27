@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# Mod+f: normal apps use Sway fullscreen; Chrome uses workspace fill without
+# xdg fullscreen (Chrome hides the URL bar when the compositor fullscreens it).
+set -euo pipefail
+
+read -r cid app_id floating fullscreen_mode has_big_mark < <(
+  swaymsg -t get_tree | python3 -c '
+import json, sys
+
+def walk(n):
+    if n.get("focused"):
+        marks = n.get("marks") or []
+        print(
+            n["id"],
+            n.get("app_id") or "",
+            n.get("floating") or "",
+            n.get("fullscreen_mode") or 0,
+            "1" if "focus_big" in marks else "0",
+        )
+        return
+    for c in n.get("nodes", []) + n.get("floating_nodes", []):
+        walk(c)
+
+walk(json.load(sys.stdin))
+'
+)
+
+if [[ -z "${cid}" ]]; then
+  exit 0
+fi
+
+if [[ "${app_id}" != "google-chrome" ]]; then
+  exec swaymsg fullscreen toggle
+fi
+
+if [[ "${fullscreen_mode}" != "0" ]]; then
+  swaymsg "[con_id=${cid}] fullscreen disable"
+fi
+
+if [[ "${has_big_mark}" == "1" || "${floating}" == "user_on" ]]; then
+  swaymsg "[con_id=${cid}] unmark focus_big, floating disable"
+else
+  swaymsg "[con_id=${cid}] mark focus_big, floating enable, resize set 100ppt 100ppt, move position center"
+fi

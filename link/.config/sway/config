@@ -55,7 +55,7 @@ bindsym $mod+Shift+$right     move right
 
 bindsym $mod+h                splith
 bindsym $mod+v                splitv
-bindsym $mod+f                fullscreen toggle
+bindsym $mod+f                exec ~/bin/sway-focus-big
 bindsym $mod+e                layout toggle split
 bindsym $mod+Shift+space      floating toggle
 bindsym $mod+space            focus mode_toggle
