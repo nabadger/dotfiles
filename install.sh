@@ -151,6 +151,11 @@ Next:
   3. Optional extras on a fresh machine:
        # Teams (Electron): sudo apt install teams-for-linux   # after adding its repo
        # Cursor apt repo:   sudo ~/bin/enable-cursor-apt-updates.sh   # if you keep that script
+       # ThinkPad volume Fn keys (X1 Carbon):
+       #   sudo ~/bin/thinkpad-enable-volume-keys
+       #   # persist: sudo apt install sysfsutils
+       #   #          sudo cp ${REPO}/link/sysfs.d/thinkpad-volume-keys.conf /etc/sysfs.d/
+       #   #          sudo systemctl restart sysfsutils
 
 Wallpaper is linked to ~/.config/sway/wallpaper (replace that file to change it).
 

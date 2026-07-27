@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Volume helper for Sway / Waybar (PipeWire via wpctl)
+set -euo pipefail
+
+export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
+PATH="/usr/bin:/bin:${PATH:-}"
+
+cmd="${1:-}"
+case "$cmd" in
+  up)   wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+ ;;
+  down) wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- ;;
+  mute) wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle ;;
+  mic)  wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle ;;
+  *)
+    echo "usage: $0 {up|down|mute|mic}" >&2
+    exit 1
+    ;;
+esac

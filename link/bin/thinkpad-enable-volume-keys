@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Enable ThinkPad ACPI volume up/down hotkey events (bits 16–17).
+# Mute/micmute are usually already enabled; brightness comes from Video Bus.
+# Needs root. Safe to re-run.
+set -euo pipefail
+
+mask_path=/sys/devices/platform/thinkpad_acpi/hotkey_mask
+all_path=/sys/devices/platform/thinkpad_acpi/hotkey_all_mask
+
+if [[ ! -f "$mask_path" ]]; then
+  echo "thinkpad_acpi hotkey_mask not found — not a ThinkPad?" >&2
+  exit 1
+fi
+
+cur=$(cat "$mask_path")
+all=$(cat "$all_path")
+# KEY bits: 16=vol up, 17=vol down, 18=mute
+want=$(( cur | (1 << 16) | (1 << 17) | (1 << 18) ))
+want=$(( want & all ))
+
+printf '0x%08x\n' "$want" > "$mask_path"
+echo "hotkey_mask: $cur -> $(cat "$mask_path")"

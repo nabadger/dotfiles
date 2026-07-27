@@ -1,0 +1,6 @@
+#!/bin/bash
+# Force native Wayland (Ozone) for all launches — menu, keybind, CLI.
+exec /usr/bin/google-chrome-stable \
+  --ozone-platform=wayland \
+  --enable-features=WaylandWindowDecorations \
+  "$@"
