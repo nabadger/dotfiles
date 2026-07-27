@@ -2,13 +2,13 @@
 # Simple power menu for Waybar / Sway
 set -euo pipefail
 
-choice="$(printf '%s\n' \
-  'Lock' \
-  'Logout' \
-  'Suspend' \
-  'Reboot' \
-  'Shutdown' \
-  | fuzzel --dmenu --prompt 'Power: ')"
+export PATH="${HOME}/bin:/usr/bin:/bin:${PATH:-}"
+
+choice="$(
+  printf '%s\n' Lock Logout Suspend Reboot Shutdown \
+    | fuzzel --dmenu --prompt 'Power: '
+)" || exit 0
+[[ -n "${choice}" ]] || exit 0
 
 case "${choice}" in
   Lock)     exec swaylock -f -c 000000 ;;
