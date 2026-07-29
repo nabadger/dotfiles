@@ -187,9 +187,4 @@ exec wl-paste --type image --watch cliphist store
 exec_always --no-startup-id sh -c 'pkill -x autotiling 2>/dev/null; exec autotiling -sr 1.61'
 # If Waybar ever disappears: Mod+Shift+b
 bindsym $mod+Shift+b exec ~/bin/waybar-launch
-exec swayidle -w \
-    timeout 300 'swaylock -f -c 000000' \
-    timeout 600 'swaymsg "output * power off"' \
-    resume 'swaymsg "output * power on"' \
-    before-sleep 'swaylock -f -c 000000'
 exec xdg-settings set default-web-browser firefox.desktop

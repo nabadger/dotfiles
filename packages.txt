@@ -4,7 +4,6 @@ vim
 git
 sway
 swaybg
-swayidle
 swaylock
 foot
 foot-terminfo
