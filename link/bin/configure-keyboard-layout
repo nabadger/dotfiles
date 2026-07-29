@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# UK (gb) layout for Sway + GTK/Chromium — keep IBUS in sync with the system layout.
+set -euo pipefail
+
+gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'gb')]" 2>/dev/null || true
+gsettings set org.freedesktop.ibus.general preload-engines "['xkb:gb::eng']" 2>/dev/null || true
+gsettings set org.freedesktop.ibus.general use-system-keyboard-layout true 2>/dev/null || true
+
+if command -v ibus >/dev/null; then
+  ibus restart 2>/dev/null || true
+fi
+
+if command -v swaymsg >/dev/null && [[ -n "${SWAYSOCK:-}" ]]; then
+  swaymsg input type:keyboard xkb_layout gb
+  swaymsg input '1:1:AT_Translated_Set_2_keyboard' xkb_model pc105
+fi
+
+echo "Keyboard layout set to UK (xkb gb)."

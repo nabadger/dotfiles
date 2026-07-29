@@ -48,10 +48,16 @@ bindsym $mod+$left            focus left
 bindsym $mod+$down            focus down
 bindsym $mod+$up              focus up
 bindsym $mod+$right           focus right
-bindsym $mod+Shift+$left      move left
-bindsym $mod+Shift+$down      move down
-bindsym $mod+Shift+$up        move up
-bindsym $mod+Shift+$right     move right
+# Move focused window to adjacent output (Alt+Shift+arrows)
+bindsym $mod+Shift+$left      move container to output left; focus output left
+bindsym $mod+Shift+$right     move container to output right; focus output right
+bindsym $mod+Shift+$up        move container to output up; focus output up
+bindsym $mod+Shift+$down      move container to output down; focus output down
+# Move tiled window within workspace (Alt+Ctrl+Shift+arrows)
+bindsym $mod+Control+Shift+$left  move left
+bindsym $mod+Control+Shift+$down  move down
+bindsym $mod+Control+Shift+$up    move up
+bindsym $mod+Control+Shift+$right move right
 
 bindsym $mod+h                splith
 bindsym $mod+v                splitv
@@ -143,10 +149,13 @@ mode "$mode_gaps_outer" {
 }
 
 ### Input
-# Only apply xkb to the real keyboard. Applying pc105 to ThinkPad Extra Buttons /
-# Video Bus breaks Fn volume & brightness keys on X1 Carbon.
-input "1:1:AT_Translated_Set_2_keyboard" {
+# Layout on all keyboards (USB dock + laptop). Do not set xkb_model on type:keyboard —
+# applying pc105 to ThinkPad WMI / Video Bus breaks Fn volume & brightness.
+input type:keyboard {
     xkb_layout gb
+}
+
+input "1:1:AT_Translated_Set_2_keyboard" {
     xkb_model pc105
 }
 
