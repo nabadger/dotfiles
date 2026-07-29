@@ -1,0 +1,9 @@
+{
+  "followSystemTheme": false,
+  "wayland": {
+    "xwaylandOptimizations": true
+  },
+  "electronCLIFlags": [
+    "--enable-features=WebRTCPipeWireCapturer"
+  ]
+}

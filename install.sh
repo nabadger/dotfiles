@@ -101,8 +101,13 @@ ENTRIES=(
   .config/fuzzel
   .config/mako
   .config/environment.d
+  .config/xdg-desktop-portal
+  .config/xdg-desktop-portal-wlr
+  .config/systemd/user/xdg-desktop-portal-wlr.service.d
+  .config/teams-for-linux
   .local/share/applications/microsoft-teams.desktop
   .local/share/applications/teams-for-linux.desktop
+  .local/share/applications/google-chrome.desktop
   .oh-my-zsh/custom/plugins/zsh-autosuggestions
   .oh-my-zsh/custom/plugins/zsh-completions
 )

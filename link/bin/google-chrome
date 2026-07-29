@@ -1,6 +1,6 @@
 #!/bin/bash
-# Force native Wayland (Ozone) for all launches — menu, keybind, CLI.
+# Native Wayland + PipeWire screen capture (required for multi-monitor share on Sway).
 exec /usr/bin/google-chrome-stable \
   --ozone-platform=wayland \
-  --enable-features=WaylandWindowDecorations \
+  --enable-features=WaylandWindowDecorations,WebRTCPipeWireCapturer \
   "$@"

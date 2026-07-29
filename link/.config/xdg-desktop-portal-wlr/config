@@ -1,0 +1,7 @@
+[screencast]
+# dmenu picker shows on top of Chrome; default slurp is easy to miss / cancel when using "choose a different screen".
+chooser_type=dmenu
+chooser_cmd=fuzzel -d -l 10 -p 'Pick screen to share:'
+max_fps=60
+# ThinkPad Intel + NVIDIA: helps PipeWire capture (window + monitor)
+force_mod_linear=1

@@ -1,6 +1,8 @@
 #!/bin/bash
-# Force native Wayland (Ozone) for all launches — menu, keybind, CLI.
+# Native Wayland + PipeWire screen capture (required for multi-monitor share on Sway).
+# Single desktop id helps xdg-desktop-portal pick sway-portals.conf (not sway:wlroots).
+export XDG_CURRENT_DESKTOP=sway
 exec /usr/bin/google-chrome-stable \
   --ozone-platform=wayland \
-  --enable-features=WaylandWindowDecorations \
+  --enable-features=WaylandWindowDecorations,WebRTCPipeWireCapturer \
   "$@"

@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-# Launch Teams for Linux (Electron). Use X11/XWayland — native Wayland GPU is unstable here.
+# Teams for Linux on Sway (X11/XWayland by default — most reliable).
+# Multi-monitor share: TEAMS_WAYLAND=1 teams (native Wayland + PipeWire).
+# Blank window on Wayland: use default X11. Stuck "already running": TEAMS_FORCE_NEW=1 teams
 set -euo pipefail
 
 BIN=""
@@ -12,35 +14,42 @@ done
 
 if [[ -z "$BIN" ]]; then
   echo "teams-for-linux is not installed." >&2
-  echo "Install: curl -fsSL https://repo.teamsforlinux.de/install.sh | sudo bash && sudo apt install teams-for-linux" >&2
-  echo "Or user-local .deb from https://github.com/IsmaelMartinez/teams-for-linux/releases" >&2
   exit 1
 fi
 
 BIN="$(type -P "$BIN" || true)"
-if [[ -z "$BIN" ]]; then
-  echo "teams-for-linux not found in PATH" >&2
-  exit 1
-fi
+[[ -n "$BIN" ]] || { echo "teams-for-linux not found in PATH" >&2; exit 1; }
 BIN="$(readlink -f "$BIN")"
 
-export ELECTRON_OZONE_PLATFORM_HINT=x11
+OZONE_PLATFORM=x11
+if [[ "${TEAMS_WAYLAND:-}" == 1 ]]; then
+  OZONE_PLATFORM=wayland
+fi
 
-EXTRA=()
-# User-local unpack has no setuid chrome-sandbox unless configured with sudo
+export ELECTRON_OZONE_PLATFORM_HINT="$OZONE_PLATFORM"
+
+# Single-instance app: raise existing window instead of exiting silently
+if [[ -z "${TEAMS_FORCE_NEW:-}" ]] && pgrep -f "$BIN" >/dev/null 2>&1; then
+  if [[ -n "${SWAYSOCK:-}" ]] && command -v swaymsg >/dev/null 2>&1; then
+    swaymsg '[app_id="teams-for-linux"]' focus 2>/dev/null || \
+      swaymsg '[class="teams-for-linux"]' focus 2>/dev/null || true
+  fi
+  exit 0
+fi
+
+EXTRA=(--disable-gpu)
 if [[ "$BIN" == *"$HOME/.local/"* ]]; then
   EXTRA+=(--no-sandbox)
 fi
 
-# Mixed DPI (e.g. laptop 2x + external 1x): XWayland buffers at the highest scale,
-# so Electron looks oversized on the 1x monitor unless we counteract at launch.
-if [[ -n "${TEAMS_DEVICE_SCALE_FACTOR:-}" ]]; then
-  EXTRA+=(--force-device-scale-factor="$TEAMS_DEVICE_SCALE_FACTOR")
-elif [[ -n "${SWAYSOCK:-}" ]] && command -v swaymsg >/dev/null 2>&1; then
-  scale_factor="$(
-    python3 - <<'PY'
+# XWayland-only: counter oversized UI on 1x external monitors (do not use on native Wayland)
+if [[ "$OZONE_PLATFORM" == x11 ]]; then
+  if [[ -n "${TEAMS_DEVICE_SCALE_FACTOR:-}" ]]; then
+    EXTRA+=(--force-device-scale-factor="$TEAMS_DEVICE_SCALE_FACTOR")
+  elif [[ -n "${SWAYSOCK:-}" ]] && command -v swaymsg >/dev/null 2>&1; then
+    scale_factor="$(
+      python3 - <<'PY'
 import json, os, subprocess
-
 out = subprocess.check_output(["swaymsg", "-t", "get_outputs"], env=os.environ)
 outputs = [o for o in json.loads(out) if o.get("active")]
 if not outputs:
@@ -51,8 +60,9 @@ focused = next((o for o in outputs if o.get("focused")), None)
 ref_scale = float(focused.get("scale", 1)) if focused else max_scale
 print(ref_scale / max_scale)
 PY
-  )"
-  EXTRA+=(--force-device-scale-factor="$scale_factor")
+    )"
+    EXTRA+=(--force-device-scale-factor="$scale_factor")
+  fi
 fi
 
-exec "$BIN" --ozone-platform=x11 --disable-gpu "${EXTRA[@]}" "$@"
+exec "$BIN" --ozone-platform="$OZONE_PLATFORM" "${EXTRA[@]}" "$@"

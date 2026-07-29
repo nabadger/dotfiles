@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Upgrade xdg-desktop-portal-wlr past Ubuntu 0.8.1 (fixes Chrome window share:
+# "No supported targets specified" — github.com/emersion/xdg-desktop-portal-wlr/issues/379)
+set -euo pipefail
+
+TAG=v0.8.4
+BUILD=/tmp/xdg-desktop-portal-wlr-build
+
+sudo apt-get install -y \
+  meson ninja-build libwayland-dev wayland-protocols \
+  libpipewire-0.3-dev libspa-0.2-dev libinih-dev libgbm-dev libdrm-dev libsystemd-dev
+
+rm -rf "$BUILD"
+git clone --depth 1 --branch "$TAG" https://github.com/emersion/xdg-desktop-portal-wlr.git "$BUILD"
+meson setup "$BUILD/build" "$BUILD"
+ninja -C "$BUILD/build"
+sudo ninja -C "$BUILD/build" install
+systemctl --user restart xdg-desktop-portal-wlr.service xdg-desktop-portal.service
+echo "Installed $(xdg-desktop-portal-wlr 2>&1 | head -1 || strings /usr/libexec/xdg-desktop-portal-wlr | head -1)"
+echo "Quit Chrome fully, reopen, try Share → Window again."

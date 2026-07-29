@@ -1,5 +1,7 @@
 # Sway config — modern Wayland stack (fuzzel, waybar, mako, foot)
 
+include /etc/sway/config.d/*
+
 ### Variables
 set $mod   Mod1
 set $up    Up
@@ -177,8 +179,11 @@ bar {
 }
 
 ### Autostart
-exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway
-exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+# Portal + PipeWire need these on the dbus/systemd user bus (see /etc/sway/config.d/50-systemd-user.conf)
+exec dbus-update-activation-environment --systemd \
+  DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway XDG_SESSION_TYPE=wayland
+exec systemctl --user import-environment \
+  DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP XDG_SESSION_TYPE
 exec mako
 exec blueman-applet
 exec wl-paste --type text --watch cliphist store
