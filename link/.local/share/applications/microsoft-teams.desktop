@@ -2,7 +2,8 @@
 Name=Microsoft Teams
 GenericName=Teams
 Comment=Unofficial Microsoft Teams client (Electron)
-Exec=sh -c 'exec "$HOME/bin/teams" "$@"' sh %U
+Exec=teams %U
+TryExec=teams
 Terminal=false
 Type=Application
 Icon=teams-for-linux

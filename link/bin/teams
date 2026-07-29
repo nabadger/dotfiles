@@ -3,7 +3,7 @@
 set -euo pipefail
 
 BIN=""
-for candidate in teams-for-linux /usr/bin/teams-for-linux /snap/bin/teams-for-linux /opt/teams-for-linux/teams-for-linux; do
+for candidate in teams-for-linux /usr/bin/teams-for-linux /snap/bin/teams-for-linux "$HOME/.local/opt/teams-for-linux/teams-for-linux" /opt/teams-for-linux/teams-for-linux; do
   if command -v "$candidate" >/dev/null 2>&1 || [[ -x "$candidate" ]]; then
     BIN="$candidate"
     break
@@ -11,11 +11,48 @@ for candidate in teams-for-linux /usr/bin/teams-for-linux /snap/bin/teams-for-li
 done
 
 if [[ -z "$BIN" ]]; then
-  echo "teams-for-linux is not installed. Run: sudo ~/bin/install-teams.sh" >&2
+  echo "teams-for-linux is not installed." >&2
+  echo "Install: curl -fsSL https://repo.teamsforlinux.de/install.sh | sudo bash && sudo apt install teams-for-linux" >&2
+  echo "Or user-local .deb from https://github.com/IsmaelMartinez/teams-for-linux/releases" >&2
   exit 1
 fi
 
-# Ensure XWayland is available under Sway
+BIN="$(type -P "$BIN" || true)"
+if [[ -z "$BIN" ]]; then
+  echo "teams-for-linux not found in PATH" >&2
+  exit 1
+fi
+BIN="$(readlink -f "$BIN")"
+
 export ELECTRON_OZONE_PLATFORM_HINT=x11
 
-exec "$BIN" --ozone-platform=x11 --disable-gpu "$@"
+EXTRA=()
+# User-local unpack has no setuid chrome-sandbox unless configured with sudo
+if [[ "$BIN" == *"$HOME/.local/"* ]]; then
+  EXTRA+=(--no-sandbox)
+fi
+
+# Mixed DPI (e.g. laptop 2x + external 1x): XWayland buffers at the highest scale,
+# so Electron looks oversized on the 1x monitor unless we counteract at launch.
+if [[ -n "${TEAMS_DEVICE_SCALE_FACTOR:-}" ]]; then
+  EXTRA+=(--force-device-scale-factor="$TEAMS_DEVICE_SCALE_FACTOR")
+elif [[ -n "${SWAYSOCK:-}" ]] && command -v swaymsg >/dev/null 2>&1; then
+  scale_factor="$(
+    python3 - <<'PY'
+import json, os, subprocess
+
+out = subprocess.check_output(["swaymsg", "-t", "get_outputs"], env=os.environ)
+outputs = [o for o in json.loads(out) if o.get("active")]
+if not outputs:
+    print(1)
+    raise SystemExit
+max_scale = max(float(o.get("scale", 1)) for o in outputs)
+focused = next((o for o in outputs if o.get("focused")), None)
+ref_scale = float(focused.get("scale", 1)) if focused else max_scale
+print(ref_scale / max_scale)
+PY
+  )"
+  EXTRA+=(--force-device-scale-factor="$scale_factor")
+fi
+
+exec "$BIN" --ozone-platform=x11 --disable-gpu "${EXTRA[@]}" "$@"

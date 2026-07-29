@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+# Move tiled window within the workspace first; only then jump to the next output.
+set -euo pipefail
+
+dir="${1:?usage: sway-move-or-output left|right|up|down}"
+
+case "$dir" in
+  left)
+    move=(move left)
+    cross=(move container to output left)
+    focus_out=(focus output left)
+    ;;
+  right)
+    move=(move right)
+    cross=(move container to output right)
+    focus_out=(focus output right)
+    ;;
+  up)
+    move=(move up)
+    cross=(move container to output up)
+    focus_out=(focus output up)
+    ;;
+  down)
+    move=(move down)
+    cross=(move container to output down)
+    focus_out=(focus output down)
+    ;;
+  *)
+    echo "unknown direction: $dir" >&2
+    exit 1
+    ;;
+esac
+
+focused_rect() {
+  swaymsg -t get_tree | jq -r '
+    .. | objects
+    | select(.type == "con" and .focused == true)
+    | [.rect.x, .rect.y, .rect.width, .rect.height] | @tsv
+  ' | head -n1
+}
+
+before="$(focused_rect)"
+if [[ -z "$before" ]]; then
+  exit 0
+fi
+
+swaymsg "${move[@]}" >/dev/null
+after="$(focused_rect)"
+
+if [[ "$before" == "$after" ]]; then
+  swaymsg "${cross[@]}" "${focus_out[@]}" >/dev/null
+fi

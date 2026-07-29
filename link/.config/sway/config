@@ -48,11 +48,11 @@ bindsym $mod+$left            focus left
 bindsym $mod+$down            focus down
 bindsym $mod+$up              focus up
 bindsym $mod+$right           focus right
-# Move focused window to adjacent output (Alt+Shift+arrows)
-bindsym $mod+Shift+$left      move container to output left; focus output left
-bindsym $mod+Shift+$right     move container to output right; focus output right
-bindsym $mod+Shift+$up        move container to output up; focus output up
-bindsym $mod+Shift+$down      move container to output down; focus output down
+# Move window: within workspace first, then to adjacent output (Alt+Shift+arrows)
+bindsym $mod+Shift+$left      exec ~/bin/sway-move-or-output left
+bindsym $mod+Shift+$right     exec ~/bin/sway-move-or-output right
+bindsym $mod+Shift+$up        exec ~/bin/sway-move-or-output up
+bindsym $mod+Shift+$down      exec ~/bin/sway-move-or-output down
 # Move tiled window within workspace (Alt+Ctrl+Shift+arrows)
 bindsym $mod+Control+Shift+$left  move left
 bindsym $mod+Control+Shift+$down  move down
