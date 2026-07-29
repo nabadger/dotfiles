@@ -164,6 +164,10 @@ input type:touchpad {
     natural_scroll enabled
 }
 
+### Monitors (laptop left, external Dell right — matches desk layout)
+output eDP-1 pos 0 0
+output DP-6 pos 1920 0
+
 ### Wallpaper (swaybg via sway — replaces feh)
 output * bg ~/.config/sway/wallpaper fill
 
